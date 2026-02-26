@@ -1,6 +1,6 @@
 ﻿namespace ToDoApplication.Tests.Infrastructure
 {
-    public class InMemoryTaskRepositoryTests
+    public class InMemoryTodoRepositoryTests
     {
     }
 }

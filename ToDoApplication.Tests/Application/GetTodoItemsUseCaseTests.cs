@@ -9,7 +9,7 @@ namespace ToDoApplication.Tests.Application
         [Fact]
         public void Execute_ReturnsAllItems()
         {
-            var repo = new InMemoryTodoItemRepository();
+            var repo = new InMemoryTodoRepository();
             var item1 = new TodoItem("Task 1");
             var item2 = new TodoItem("Task 2");
             repo.Add(item1);

@@ -1,6 +1,6 @@
 ﻿namespace ToDoApplication.Tests.Presentation
 {
-    public class TaskPresenterTests
+    public class TodoPresenterTests
     {
     }
 }

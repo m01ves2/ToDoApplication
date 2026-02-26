@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	  <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+	  <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ToDoApplication.Application\ToDoApplication.Application.csproj" />
+    <ProjectReference Include="..\ToDoApplication.Domain\ToDoApplication.Domain.csproj" />
+    <ProjectReference Include="..\ToDoApplication.Infrastructure\ToDoApplication.Infrastructure.csproj" />
+    <ProjectReference Include="..\ToDoApplication.Presentation\ToDoApplication.Presentation.csproj" />
+    <ProjectReference Include="..\ToDoApplication.WinForms\ToDoApplication.WinForms.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -4,15 +4,15 @@ using ToDoApplication.Infrastructure.Repositories;
 
 namespace ToDoApplication.Tests.Application
 {
-    public class MarkTodoItemCompletedUseCaseTests
+    public class ToggleTodoItemCompletedUseCaseTests
     {
         [Fact]
         public void Execute_SetsIsCompletedToTrue()
         {
-            var repo = new InMemoryTodoItemRepository();
+            var repo = new InMemoryTodoRepository();
             var item = new TodoItem("Learn TDD");
             repo.Add(item);
-            var useCase = new MarkTodoItemCompletedUseCase(repo);
+            var useCase = new ToggleTodoItemCompletedUseCase(repo);
 
             useCase.Execute(item);
 

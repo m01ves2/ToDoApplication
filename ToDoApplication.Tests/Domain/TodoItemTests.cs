@@ -20,10 +20,10 @@ namespace ToDoApplication.Tests.Domain
         }
 
         [Fact]
-        public void MarkCompleted_SetsIsCompletedToTrue()
+        public void ToggleCompleted_SetsIsCompletedToTrue()
         {
             var task = new TodoItem("Learn TDD");
-            task.MarkCompleted();
+            task.ToggleCompleted();
             Assert.True(task.IsCompleted);
         }
     }

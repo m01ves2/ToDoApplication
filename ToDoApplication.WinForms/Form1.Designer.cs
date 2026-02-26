@@ -27,12 +27,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            tbNewTask = new TextBox();
+            btnAddTask = new Button();
+            lbTasks = new CheckedListBox();
+            SuspendLayout();
+            // 
+            // tbNewTask
+            // 
+            tbNewTask.Location = new Point(12, 405);
+            tbNewTask.Name = "tbNewTask";
+            tbNewTask.Size = new Size(645, 23);
+            tbNewTask.TabIndex = 0;
+            // 
+            // btnAddTask
+            // 
+            btnAddTask.Location = new Point(668, 404);
+            btnAddTask.Name = "btnAddTask";
+            btnAddTask.Size = new Size(120, 23);
+            btnAddTask.TabIndex = 1;
+            btnAddTask.Text = "Create Task";
+            btnAddTask.UseVisualStyleBackColor = true;
+            btnAddTask.Click += btnAddTask_Click;
+            // 
+            // lbTasks
+            // 
+            lbTasks.FormattingEnabled = true;
+            lbTasks.Location = new Point(12, 12);
+            lbTasks.Name = "lbTasks";
+            lbTasks.Size = new Size(645, 382);
+            lbTasks.TabIndex = 2;
+            lbTasks.ItemCheck += lbTasks_ItemCheck;
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(lbTasks);
+            Controls.Add(btnAddTask);
+            Controls.Add(tbNewTask);
+            Name = "Form1";
+            Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private TextBox tbNewTask;
+        private Button btnAddTask;
+        private CheckedListBox lbTasks;
     }
 }

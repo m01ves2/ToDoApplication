@@ -2,7 +2,7 @@
 {
     public class TodoItem
     {
-        //public int Id { get; private set; }
+        public int Id { get; set; }
         public string Title { get; }
         public bool IsCompleted { get; private set; }
         public TodoItem(string title) {
@@ -13,9 +13,9 @@
             IsCompleted = false;
         }
 
-        public void MarkCompleted()
+        public void ToggleComplete()
         {
-            IsCompleted = true;
+            IsCompleted = !IsCompleted;
         }
     }
 }

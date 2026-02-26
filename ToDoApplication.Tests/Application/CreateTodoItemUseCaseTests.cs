@@ -9,7 +9,7 @@ namespace ToDoApplication.Tests.Application
         public void Execute_WithValidTitle_AddsTodoItemToRepository()
         {
             // Arrange
-            var repo = new InMemoryTodoItemRepository();
+            var repo = new InMemoryTodoRepository();
             var useCase = new CreateTodoItemUseCase(repo);
 
             // Act
@@ -25,7 +25,7 @@ namespace ToDoApplication.Tests.Application
         public void Execute_WithNullOrEmptyTitle_ThrowsException()
         {
             // Arrange
-            var repo = new InMemoryTodoItemRepository();
+            var repo = new InMemoryTodoRepository();
             var useCase = new CreateTodoItemUseCase(repo);
 
             // Act & Assert

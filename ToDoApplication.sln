@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36811.4 d17.14
+VisualStudioVersion = 17.14.36811.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Domain", "ToDoApplication.Domain\ToDoApplication.Domain.csproj", "{8E0A0CB5-49E4-40C5-A74B-7AF72820FF8D}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Infrastructure", "ToDoApplication.Infrastructure\ToDoApplication.Infrastructure.csproj", "{B92A20ED-1AC1-4E0F-8000-D364910962AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Presentation", "ToDoApplication.Presentation\ToDoApplication.Presentation.csproj", "{BBEAF664-6E27-4B38-8A45-74629B3A425C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Playground", "ToDoApplication.Playground\ToDoApplication.Playground.csproj", "{2A5E8134-931C-45E4-ACB2-A4628D14CCDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.CompositionRoot", "ToDoApplication.CompositionRoot\ToDoApplication.CompositionRoot.csproj", "{071BDD76-8DF8-4A75-BF82-F80AB4D8CCA8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{BBEAF664-6E27-4B38-8A45-74629B3A425C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBEAF664-6E27-4B38-8A45-74629B3A425C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBEAF664-6E27-4B38-8A45-74629B3A425C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A5E8134-931C-45E4-ACB2-A4628D14CCDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A5E8134-931C-45E4-ACB2-A4628D14CCDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A5E8134-931C-45E4-ACB2-A4628D14CCDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A5E8134-931C-45E4-ACB2-A4628D14CCDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{071BDD76-8DF8-4A75-BF82-F80AB4D8CCA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071BDD76-8DF8-4A75-BF82-F80AB4D8CCA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071BDD76-8DF8-4A75-BF82-F80AB4D8CCA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071BDD76-8DF8-4A75-BF82-F80AB4D8CCA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

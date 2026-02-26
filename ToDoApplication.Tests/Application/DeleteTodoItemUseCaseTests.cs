@@ -9,7 +9,7 @@ namespace ToDoApplication.Tests.Application
         [Fact]
         public void Execute_RemovesItemFromRepository()
         {
-            var repo = new InMemoryTodoItemRepository();
+            var repo = new InMemoryTodoRepository();
             var item = new TodoItem("Learn TDD");
             repo.Add(item);
             var useCase = new DeleteTodoItemUseCase(repo);

@@ -7,5 +7,6 @@ namespace ToDoApplication.Application.Interfaces
         void Add(TodoItem item);
         void Remove(TodoItem item);
         IReadOnlyList<TodoItem> GetAll();
+        TodoItem? GetById(int id);
     }
 }
