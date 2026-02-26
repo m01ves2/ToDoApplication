@@ -1,6 +1,6 @@
 ﻿namespace ToDoApplication.Domain.Interfaces
 {
-    public class ITaskRepository
+    public class ITodoItemRepository
     {
     }
 }

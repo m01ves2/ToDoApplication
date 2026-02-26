@@ -1,6 +1,11 @@
-﻿namespace ToDoApplication.Application.Interfaces
+﻿using ToDoApplication.Domain.Entities;
+
+namespace ToDoApplication.Application.Interfaces
 {
-    public interface ITodoRepository
+    public interface ITodoItemRepository
     {
+        void Add(TodoItem item);
+        void Remove(TodoItem item);
+        IReadOnlyList<TodoItem> GetAll();
     }
 }

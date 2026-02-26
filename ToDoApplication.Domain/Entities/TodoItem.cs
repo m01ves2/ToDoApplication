@@ -1,11 +1,11 @@
 ﻿namespace ToDoApplication.Domain.Entities
 {
-    public class TodoItam
+    public class TodoItem
     {
         //public int Id { get; private set; }
         public string Title { get; }
         public bool IsCompleted { get; private set; }
-        public TodoItam(string title) {
+        public TodoItem(string title) {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title cannot be null or empty", nameof(title));
 

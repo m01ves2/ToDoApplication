@@ -17,7 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ToDoApplication.Application\ToDoApplication.Application.csproj" />
     <ProjectReference Include="..\ToDoApplication.Domain\ToDoApplication.Domain.csproj" />
+    <ProjectReference Include="..\ToDoApplication.Infrastructure\ToDoApplication.Infrastructure.csproj" />
+    <ProjectReference Include="..\ToDoApplication.Presentation\ToDoApplication.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

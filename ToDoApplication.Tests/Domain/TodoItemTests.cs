@@ -7,7 +7,7 @@ namespace ToDoApplication.Tests.Domain
         [Fact]
         public void Create_WithValidTitle_SetsTitleAndIsNotCompleted()
         {
-            var task = new TodoItam("Learn TDD");
+            var task = new TodoItem("Learn TDD");
 
             Assert.Equal("Learn TDD", task.Title);
             Assert.False(task.IsCompleted);
@@ -16,13 +16,13 @@ namespace ToDoApplication.Tests.Domain
         [Fact]
         public void Create_WithNullTitle_ThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => new TodoItam(null));
+            Assert.Throws<ArgumentException>(() => new TodoItem(null));
         }
 
         [Fact]
         public void MarkCompleted_SetsIsCompletedToTrue()
         {
-            var task = new TodoItam("Learn TDD");
+            var task = new TodoItem("Learn TDD");
             task.MarkCompleted();
             Assert.True(task.IsCompleted);
         }
