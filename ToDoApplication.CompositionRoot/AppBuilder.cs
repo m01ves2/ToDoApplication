@@ -18,7 +18,7 @@ namespace ToDoApplication.CompositionRoot
             // 2. UseCases
             var createUseCase = new CreateTodoItemUseCase(repo);
             var getUseCase = new GetTodoItemsUseCase(repo);
-            var ToggleCompletedUseCase = new ToggleTodoItemCompletedUseCase(repo);
+            var ToggleCompletedUseCase = new ToggleCompletedUseCase(repo);
             var deleteUseCase = new DeleteTodoItemUseCase(repo);
             var deleteAllCompletedUseCase = new DeleteCompletedUseCase(repo);
             var swapItemsOrderUsecase = new SwapItemsOrderUseCase(repo);

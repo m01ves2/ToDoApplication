@@ -1,4 +1,5 @@
 ﻿using ToDoApplication.Application.UseCases;
+using ToDoApplication.Domain.Entities;
 using ToDoApplication.Presentation.Interfaces;
 using ToDoApplication.Presentation.Models;
 
@@ -9,73 +10,96 @@ namespace ToDoApplication.Presentation
         private readonly ITodoView _view;
         private readonly CreateTodoItemUseCase _createUseCase;
         private readonly GetTodoItemsUseCase _getUseCase;
-        private readonly ToggleTodoItemCompletedUseCase _ToggleTodoItemCompletedUseCase;
-        private readonly DeleteTodoItemUseCase _deleteTodoItemUseCase;
+        private readonly ToggleCompletedUseCase _toggleCompletedUseCase;
+        private readonly DeleteTodoItemUseCase _deleteUseCase;
         private readonly DeleteCompletedUseCase _deleteCompletedUseCase;
-        private readonly SwapItemsOrderUseCase _swapItemsOrderUseCase;
+        private readonly SwapItemsOrderUseCase _swapOrderUseCase;
 
         public TodoPresenter(
             ITodoView view,
             CreateTodoItemUseCase createUseCase,
             GetTodoItemsUseCase getUseCase,
-            ToggleTodoItemCompletedUseCase ToggleTodoItemCompletedUseCase,
-            DeleteTodoItemUseCase deleteTodoItemUseCase,
+            ToggleCompletedUseCase toggleCompletedUseCase,
+            DeleteTodoItemUseCase deleteUseCase,
             DeleteCompletedUseCase deleteAllUseCase,
-            SwapItemsOrderUseCase swapItemsOrderUseCase)
+            SwapItemsOrderUseCase swapOrderUseCase)
         {
             _view = view;
             _createUseCase = createUseCase;
             _getUseCase = getUseCase;
-            _ToggleTodoItemCompletedUseCase = ToggleTodoItemCompletedUseCase;
-            _deleteTodoItemUseCase = deleteTodoItemUseCase;
+            _toggleCompletedUseCase = toggleCompletedUseCase;
+            _deleteUseCase = deleteUseCase;
             _deleteCompletedUseCase = deleteAllUseCase;
-            _swapItemsOrderUseCase = swapItemsOrderUseCase;
+            _swapOrderUseCase = swapOrderUseCase;
 
+            SubscribeToViewEvents();
+            RefreshList();
+        }
+
+        private void SubscribeToViewEvents()
+        {
             _view.AddButtonClicked += OnAddButtonClicked;
-            _view.ItemToggleedCompleted += OnItemToggleedComplete;
+            _view.ItemToggledCompleted += OnItemToggledCompleted;
             _view.DeleteButtonClicked += OnDeleteButtonClicked;
-            _view.DeleteCompletedButtonClicked += OnDeleteCompletedButtonClicked;
+            _view.DeleteCompletedButtonClicked += OnDeleteCompletedClicked;
             _view.SwapButtonUpClicked += OnSwapButtonClicked;
             _view.SwapButtonDownClicked += OnSwapButtonClicked;
-            RefreshList();
-        }
-
-        private void OnSwapButtonClicked(int id1, int id2)
-        {
-            _swapItemsOrderUseCase.Execute(id1, id2);
-            RefreshList();
-        }
-
-        private void OnDeleteCompletedButtonClicked()
-        {
-            _deleteCompletedUseCase.Execute();
-            RefreshList();
         }
 
         private void OnAddButtonClicked(string title)
         {
-            var item = _createUseCase.Execute(title);
+            if (string.IsNullOrWhiteSpace(title))
+                return;
+
+            ExecuteSafe(() => _createUseCase.Execute(title));
             RefreshList();
         }
 
         private void OnDeleteButtonClicked(int id)
         {
-
-            _deleteTodoItemUseCase.Execute(id);
+            ExecuteSafe(() => _deleteUseCase.Execute(id));
             RefreshList();
         }
 
-        private void OnItemToggleedComplete(int id)
+        private void OnDeleteCompletedClicked()
         {
-            _ToggleTodoItemCompletedUseCase.Execute(id);
+            ExecuteSafe(() => _deleteCompletedUseCase.Execute());
+            RefreshList();
+        }
+
+        private void OnItemToggledCompleted(int id)
+        {
+            ExecuteSafe(() => _toggleCompletedUseCase.Execute(id));
+            RefreshList();
+        }
+
+        private void OnSwapButtonClicked(int id1, int id2)
+        {
+            ExecuteSafe(() => _swapOrderUseCase.Execute(id1, id2));
             RefreshList();
         }
 
         private void RefreshList()
         {
             var items = _getUseCase.Execute();
-            var dtos = items.Select(i => new TodoItemDto(i.Id, i.Title, i.IsCompleted, i.Order));
+            var dtos = ConvertToDto(items);
             _view.DisplayTodoItems(dtos);
+        }
+
+        private IEnumerable<TodoItemDto> ConvertToDto(IReadOnlyList<TodoItem> items)
+        {
+            return items.Select(i => new TodoItemDto(i.Id, i.Title, i.IsCompleted, i.Order));
+        }
+
+        private void ExecuteSafe(Action action)
+        {
+            try {
+                action();
+            }
+            catch (Exception ex) {
+                _view.ShowError(ex.Message);
+                Console.WriteLine($"Error: {ex.Message}");
+            }
         }
     }
 }

@@ -8,8 +8,8 @@ namespace ToDoApplication.WinForms
     {
         public event Action<string>? AddButtonClicked;
         public event Action<int>? DeleteButtonClicked;
-        public event Action DeleteCompletedButtonClicked;
-        public event Action<int>? ItemToggleedCompleted;
+        public event Action? DeleteCompletedButtonClicked;
+        public event Action<int>? ItemToggledCompleted;
         public event Action<int, int>? SwapButtonUpClicked;
         public event Action<int, int>? SwapButtonDownClicked;
 
@@ -17,12 +17,15 @@ namespace ToDoApplication.WinForms
         public Form1()
         {
             InitializeComponent();
-
             tbNewTask.Focus();
             lbTasks.DisplayMember = "Title";
             lbTasks.ValueMember = "Id";
         }
 
+        public void ShowError(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         public void DisplayTodoItems(IEnumerable<TodoItemDto> items)
         {
@@ -39,7 +42,7 @@ namespace ToDoApplication.WinForms
         private void btnAddTodoItem_Click(object sender, EventArgs e)
         {
             AddButtonClicked?.Invoke(tbNewTask.Text);
-            tbNewTask.Text = string.Empty;
+            tbNewTask.Clear();
             tbNewTask.Focus();
         }
 
@@ -49,55 +52,44 @@ namespace ToDoApplication.WinForms
                 return;
 
             var item = (TodoItemDto)lbTasks.Items[e.Index];
-            ItemToggleedCompleted?.Invoke(item.Id);
+            ItemToggledCompleted?.Invoke(item.Id);
         }
 
         private void btnDeleteTodoItem_Click(object sender, EventArgs e)
         {
-            var selectedItem = (TodoItemDto)lbTasks.SelectedItem;
-
-            if (selectedItem != null) {
-                DeleteButtonClicked?.Invoke(selectedItem.Id);
-            }
+            if (lbTasks.SelectedItem is TodoItemDto selected) //not null
+                DeleteButtonClicked?.Invoke(selected.Id);
         }
+
 
         private void btnDeleteCompletedTasks_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete all completed tasks?", "Delete completed tasks", MessageBoxButtons.YesNo) == DialogResult.Yes) {
+            if (MessageBox.Show("Delete all completed tasks?", "Delete completed tasks", 
+                                MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 DeleteCompletedButtonClicked?.Invoke();
             }
         }
 
         private void btnUp_Click(object sender, EventArgs e)
         {
-            var selectedItem = (TodoItemDto)lbTasks.SelectedItem;
-            if (selectedItem == null)
-                return;
+            if (lbTasks.SelectedItem is not TodoItemDto selected) return; // проверка на null
+            int index = lbTasks.SelectedIndex;
+            if (index <= 0) return;
 
-            int selectedIndex = lbTasks.SelectedIndex;
-            if (selectedIndex == 0)
-                return;
-
-            var swapWithItem = (TodoItemDto)lbTasks.Items[selectedIndex - 1];
-            SwapButtonUpClicked?.Invoke(selectedItem.Id, swapWithItem.Id);
-
-            lbTasks.SelectedIndex = selectedIndex - 1;
+            var swapWith = (TodoItemDto)lbTasks.Items[index - 1];
+            SwapButtonUpClicked?.Invoke(selected.Id, swapWith.Id);
+            lbTasks.SelectedIndex = index - 1;
         }
 
         private void btnDown_Click(object sender, EventArgs e)
         {
-            var selectedItem = (TodoItemDto)lbTasks.SelectedItem;
-            if (selectedItem == null) 
-                return;
+            if (lbTasks.SelectedItem is not TodoItemDto selected) return; // проверка на null
+            int index = lbTasks.SelectedIndex;
+            if (index >= lbTasks.Items.Count - 1) return;
 
-            int selectedIndex = lbTasks.SelectedIndex;
-            if (selectedIndex == lbTasks.Items.Count - 1)
-                return;
-
-            var swapWithItem = (TodoItemDto)lbTasks.Items[selectedIndex + 1];
-            SwapButtonDownClicked?.Invoke(selectedItem.Id, swapWithItem.Id);
-
-            lbTasks.SelectedIndex = selectedIndex + 1;
+            var swapWith = (TodoItemDto)lbTasks.Items[index + 1];
+            SwapButtonDownClicked?.Invoke(selected.Id, swapWith.Id);
+            lbTasks.SelectedIndex = index + 1;
         }
     }
 }

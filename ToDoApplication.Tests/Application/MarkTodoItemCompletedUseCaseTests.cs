@@ -12,7 +12,7 @@ namespace ToDoApplication.Tests.Application
             var repo = new InMemoryTodoRepository();
             var item = new TodoItem("Learn TDD");
             repo.Add(item);
-            var useCase = new ToggleTodoItemCompletedUseCase(repo);
+            var useCase = new ToggleCompletedUseCase(repo);
 
             useCase.Execute(item);
 

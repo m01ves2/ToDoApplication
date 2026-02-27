@@ -3,10 +3,10 @@ using ToDoApplication.Domain.Entities;
 
 namespace ToDoApplication.Application.UseCases
 {
-    public class ToggleTodoItemCompletedUseCase
+    public class ToggleCompletedUseCase
     {
         private readonly ITodoRepository _repo;
-        public ToggleTodoItemCompletedUseCase(ITodoRepository repo)
+        public ToggleCompletedUseCase(ITodoRepository repo)
         {
             _repo = repo;
         }
