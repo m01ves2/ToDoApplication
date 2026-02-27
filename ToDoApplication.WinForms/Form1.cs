@@ -10,6 +10,8 @@ namespace ToDoApplication.WinForms
         public event Action<int>? DeleteButtonClicked;
         public event Action DeleteCompletedButtonClicked;
         public event Action<int>? ItemToggleedCompleted;
+        public event Action<int, int>? SwapButtonUpClicked;
+        public event Action<int, int>? SwapButtonDownClicked;
 
         private bool _isUpdating;
         public Form1()
@@ -64,6 +66,38 @@ namespace ToDoApplication.WinForms
             if (MessageBox.Show("Delete all completed tasks?", "Delete completed tasks", MessageBoxButtons.YesNo) == DialogResult.Yes) {
                 DeleteCompletedButtonClicked?.Invoke();
             }
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            var selectedItem = (TodoItemDto)lbTasks.SelectedItem;
+            if (selectedItem == null)
+                return;
+
+            int selectedIndex = lbTasks.SelectedIndex;
+            if (selectedIndex == 0)
+                return;
+
+            var swapWithItem = (TodoItemDto)lbTasks.Items[selectedIndex - 1];
+            SwapButtonUpClicked?.Invoke(selectedItem.Id, swapWithItem.Id);
+
+            lbTasks.SelectedIndex = selectedIndex - 1;
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            var selectedItem = (TodoItemDto)lbTasks.SelectedItem;
+            if (selectedItem == null) 
+                return;
+
+            int selectedIndex = lbTasks.SelectedIndex;
+            if (selectedIndex == lbTasks.Items.Count - 1)
+                return;
+
+            var swapWithItem = (TodoItemDto)lbTasks.Items[selectedIndex + 1];
+            SwapButtonDownClicked?.Invoke(selectedItem.Id, swapWithItem.Id);
+
+            lbTasks.SelectedIndex = selectedIndex + 1;
         }
     }
 }

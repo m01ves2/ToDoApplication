@@ -12,6 +12,7 @@ namespace ToDoApplication.Presentation
         private readonly ToggleTodoItemCompletedUseCase _ToggleTodoItemCompletedUseCase;
         private readonly DeleteTodoItemUseCase _deleteTodoItemUseCase;
         private readonly DeleteCompletedUseCase _deleteCompletedUseCase;
+        private readonly SwapItemsOrderUseCase _swapItemsOrderUseCase;
 
         public TodoPresenter(
             ITodoView view,
@@ -19,7 +20,8 @@ namespace ToDoApplication.Presentation
             GetTodoItemsUseCase getUseCase,
             ToggleTodoItemCompletedUseCase ToggleTodoItemCompletedUseCase,
             DeleteTodoItemUseCase deleteTodoItemUseCase,
-            DeleteCompletedUseCase deleteAllUseCase)
+            DeleteCompletedUseCase deleteAllUseCase,
+            SwapItemsOrderUseCase swapItemsOrderUseCase)
         {
             _view = view;
             _createUseCase = createUseCase;
@@ -27,11 +29,20 @@ namespace ToDoApplication.Presentation
             _ToggleTodoItemCompletedUseCase = ToggleTodoItemCompletedUseCase;
             _deleteTodoItemUseCase = deleteTodoItemUseCase;
             _deleteCompletedUseCase = deleteAllUseCase;
+            _swapItemsOrderUseCase = swapItemsOrderUseCase;
 
             _view.AddButtonClicked += OnAddButtonClicked;
             _view.ItemToggleedCompleted += OnItemToggleedComplete;
             _view.DeleteButtonClicked += OnDeleteButtonClicked;
             _view.DeleteCompletedButtonClicked += OnDeleteCompletedButtonClicked;
+            _view.SwapButtonUpClicked += OnSwapButtonClicked;
+            _view.SwapButtonDownClicked += OnSwapButtonClicked;
+            RefreshList();
+        }
+
+        private void OnSwapButtonClicked(int id1, int id2)
+        {
+            _swapItemsOrderUseCase.Execute(id1, id2);
             RefreshList();
         }
 
@@ -63,7 +74,7 @@ namespace ToDoApplication.Presentation
         private void RefreshList()
         {
             var items = _getUseCase.Execute();
-            var dtos = items.Select(i => new TodoItemDto(i.Id, i.Title, i.IsCompleted));
+            var dtos = items.Select(i => new TodoItemDto(i.Id, i.Title, i.IsCompleted, i.Order));
             _view.DisplayTodoItems(dtos);
         }
     }

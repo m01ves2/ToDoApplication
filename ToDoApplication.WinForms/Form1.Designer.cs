@@ -32,6 +32,8 @@
             lbTasks = new CheckedListBox();
             btnDeleteTask = new Button();
             btnCompletedlTasks = new Button();
+            btnUp = new Button();
+            btnDown = new Button();
             SuspendLayout();
             // 
             // tbNewTask
@@ -80,11 +82,33 @@
             btnCompletedlTasks.UseVisualStyleBackColor = true;
             btnCompletedlTasks.Click += btnDeleteCompletedTasks_Click;
             // 
+            // btnUp
+            // 
+            btnUp.Location = new Point(639, 72);
+            btnUp.Name = "btnUp";
+            btnUp.Size = new Size(70, 50);
+            btnUp.TabIndex = 5;
+            btnUp.Text = "UP";
+            btnUp.UseVisualStyleBackColor = true;
+            btnUp.Click += btnUp_Click;
+            // 
+            // btnDown
+            // 
+            btnDown.Location = new Point(715, 72);
+            btnDown.Name = "btnDown";
+            btnDown.Size = new Size(70, 50);
+            btnDown.TabIndex = 6;
+            btnDown.Text = "DOWN";
+            btnDown.UseVisualStyleBackColor = true;
+            btnDown.Click += btnDown_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnDown);
+            Controls.Add(btnUp);
             Controls.Add(btnCompletedlTasks);
             Controls.Add(btnDeleteTask);
             Controls.Add(lbTasks);
@@ -103,5 +127,7 @@
         private CheckedListBox lbTasks;
         private Button btnDeleteTask;
         private Button btnCompletedlTasks;
+        private Button btnUp;
+        private Button btnDown;
     }
 }

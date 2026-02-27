@@ -5,6 +5,8 @@
         public int Id { get; private set; }
         public string Title { get; }
         public bool IsCompleted { get; private set; }
+        
+        public int Order { get; private set; }
         public TodoItem(string title) {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title cannot be null or empty", nameof(title));
@@ -21,6 +23,11 @@
         internal void SetId(int id)
         {
             Id = id;
+        }
+
+        internal void SetOrder(int order)
+        {
+            Order = order;
         }
     }
 }

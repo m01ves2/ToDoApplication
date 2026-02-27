@@ -21,12 +21,19 @@ namespace ToDoApplication.CompositionRoot
             var ToggleCompletedUseCase = new ToggleTodoItemCompletedUseCase(repo);
             var deleteUseCase = new DeleteTodoItemUseCase(repo);
             var deleteAllCompletedUseCase = new DeleteCompletedUseCase(repo);
+            var swapItemsOrderUsecase = new SwapItemsOrderUseCase(repo);
 
             // 3. Форма
             var form = new Form1();
 
             // 4. Presenter
-            var presenter = new TodoPresenter(form, createUseCase, getUseCase, ToggleCompletedUseCase, deleteUseCase, deleteAllCompletedUseCase);
+            var presenter = new TodoPresenter(  form, 
+                                                createUseCase, 
+                                                getUseCase, 
+                                                ToggleCompletedUseCase, 
+                                                deleteUseCase, 
+                                                deleteAllCompletedUseCase,
+                                                swapItemsOrderUsecase);
 
             return form;
         }

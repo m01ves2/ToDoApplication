@@ -7,7 +7,9 @@ namespace ToDoApplication.Presentation.Interfaces
         event Action<string>? AddButtonClicked;
         event Action<int>? ItemToggleedCompleted;
         event Action<int>? DeleteButtonClicked;
-        public event Action DeleteCompletedButtonClicked;
+        event Action DeleteCompletedButtonClicked;
+        event Action<int, int>? SwapButtonUpClicked;
+        event Action<int, int>? SwapButtonDownClicked;
         void DisplayTodoItems(IEnumerable<TodoItemDto> items);
     }
 }

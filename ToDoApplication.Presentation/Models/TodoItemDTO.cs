@@ -6,11 +6,13 @@
         public string Title { get; }
         public bool IsCompleted { get; }
 
-        public TodoItemDto(int id, string title, bool isCompleted)
+        public int Order {  get; }
+        public TodoItemDto(int id, string title, bool isCompleted, int order)
         {
             Id = id;
             Title = title;
             IsCompleted = isCompleted;
+            Order = order;
         }
 
         public override string ToString()
