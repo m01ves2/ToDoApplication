@@ -30,39 +30,63 @@
             tbNewTask = new TextBox();
             btnAddTask = new Button();
             lbTasks = new CheckedListBox();
+            btnDeleteTask = new Button();
+            btnCompletedlTasks = new Button();
             SuspendLayout();
             // 
             // tbNewTask
             // 
             tbNewTask.Location = new Point(12, 405);
             tbNewTask.Name = "tbNewTask";
-            tbNewTask.Size = new Size(645, 23);
+            tbNewTask.Size = new Size(583, 23);
             tbNewTask.TabIndex = 0;
             // 
             // btnAddTask
             // 
-            btnAddTask.Location = new Point(668, 404);
+            btnAddTask.Location = new Point(635, 404);
             btnAddTask.Name = "btnAddTask";
-            btnAddTask.Size = new Size(120, 23);
+            btnAddTask.Size = new Size(153, 23);
             btnAddTask.TabIndex = 1;
             btnAddTask.Text = "Create Task";
             btnAddTask.UseVisualStyleBackColor = true;
-            btnAddTask.Click += btnAddTask_Click;
+            btnAddTask.Click += btnAddTodoItem_Click;
             // 
             // lbTasks
             // 
             lbTasks.FormattingEnabled = true;
             lbTasks.Location = new Point(12, 12);
             lbTasks.Name = "lbTasks";
-            lbTasks.Size = new Size(645, 382);
+            lbTasks.Size = new Size(583, 382);
             lbTasks.TabIndex = 2;
             lbTasks.ItemCheck += lbTasks_ItemCheck;
+            // 
+            // btnDeleteTask
+            // 
+            btnDeleteTask.Location = new Point(635, 12);
+            btnDeleteTask.Name = "btnDeleteTask";
+            btnDeleteTask.Size = new Size(153, 23);
+            btnDeleteTask.TabIndex = 3;
+            btnDeleteTask.Text = "Delete Task";
+            btnDeleteTask.UseVisualStyleBackColor = true;
+            btnDeleteTask.Click += btnDeleteTodoItem_Click;
+            // 
+            // btnCompletedlTasks
+            // 
+            btnCompletedlTasks.Location = new Point(635, 41);
+            btnCompletedlTasks.Name = "btnCompletedlTasks";
+            btnCompletedlTasks.Size = new Size(153, 23);
+            btnCompletedlTasks.TabIndex = 4;
+            btnCompletedlTasks.Text = "Delete Completed Tasks";
+            btnCompletedlTasks.UseVisualStyleBackColor = true;
+            btnCompletedlTasks.Click += btnDeleteCompletedTasks_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCompletedlTasks);
+            Controls.Add(btnDeleteTask);
             Controls.Add(lbTasks);
             Controls.Add(btnAddTask);
             Controls.Add(tbNewTask);
@@ -77,5 +101,7 @@
         private TextBox tbNewTask;
         private Button btnAddTask;
         private CheckedListBox lbTasks;
+        private Button btnDeleteTask;
+        private Button btnCompletedlTasks;
     }
 }

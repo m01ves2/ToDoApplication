@@ -5,9 +5,9 @@ namespace ToDoApplication.Application.UseCases
 {
     public class CreateTodoItemUseCase
     {
-        private readonly ITodoItemRepository _repo;
+        private readonly ITodoRepository _repo;
 
-        public CreateTodoItemUseCase(ITodoItemRepository repo)
+        public CreateTodoItemUseCase(ITodoRepository repo)
         {
             _repo = repo;
         }

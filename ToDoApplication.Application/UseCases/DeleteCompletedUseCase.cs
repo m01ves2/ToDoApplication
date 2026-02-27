@@ -1,20 +1,20 @@
 ﻿using ToDoApplication.Application.Interfaces;
-using ToDoApplication.Domain.Entities;
+using ToDoApplication.Domain.Exceptions;
 
 namespace ToDoApplication.Application.UseCases
 {
-    public class GetTodoItemsUseCase
+    public class DeleteCompletedUseCase
     {
         private readonly ITodoRepository _repo;
 
-        public GetTodoItemsUseCase(ITodoRepository repo)
+        public DeleteCompletedUseCase(ITodoRepository repo)
         {
             _repo = repo;
         }
 
-        public IReadOnlyList<TodoItem> Execute()
+        public void Execute()
         {
-            return _repo.GetAll();
+            _repo.RemoveCompleted();
         }
     }
 }

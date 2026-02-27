@@ -5,8 +5,8 @@ namespace ToDoApplication.Application.UseCases
 {
     public class ToggleTodoItemCompletedUseCase
     {
-        private readonly ITodoItemRepository _repo;
-        public ToggleTodoItemCompletedUseCase(ITodoItemRepository repo)
+        private readonly ITodoRepository _repo;
+        public ToggleTodoItemCompletedUseCase(ITodoRepository repo)
         {
             _repo = repo;
         }

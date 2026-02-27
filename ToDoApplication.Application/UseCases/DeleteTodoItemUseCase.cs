@@ -1,19 +1,25 @@
 ﻿using ToDoApplication.Application.Interfaces;
 using ToDoApplication.Domain.Entities;
+using ToDoApplication.Domain.Exceptions;
 
 namespace ToDoApplication.Application.UseCases
 {
     public class DeleteTodoItemUseCase
     {
-        private readonly ITodoItemRepository _repo;
+        private readonly ITodoRepository _repo;
 
-        public DeleteTodoItemUseCase(ITodoItemRepository repo)
+        public DeleteTodoItemUseCase(ITodoRepository repo)
         {
             _repo = repo;
         }
 
-        public void Execute(TodoItem item)
+        public void Execute(int id)
         {
+            var item = _repo.GetById(id);
+
+            if (item is null)
+                throw new TodoNotFoundException(id);
+
             _repo.Remove(item);
         }
     }

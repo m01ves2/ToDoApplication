@@ -3,14 +3,13 @@ using ToDoApplication.Domain.Entities;
 
 namespace ToDoApplication.Infrastructure.Repositories
 {
-    public class InMemoryTodoRepository : ITodoItemRepository
+    public class InMemoryTodoRepository : ITodoRepository
     {
         private readonly List<TodoItem> _items = new List<TodoItem>();
-        private int _nextIndex = 0;
+        private int _nextId = 0;
         public void Add(TodoItem item)
         {
-            _nextIndex++;
-            item.Id = _nextIndex;
+            item.SetId(_nextId++);
             _items.Add(item);
         }
 
@@ -21,12 +20,17 @@ namespace ToDoApplication.Infrastructure.Repositories
 
         public TodoItem? GetById(int id)
         {
-            return _items.Find(x => x.Id == id);
+            return _items.FirstOrDefault(x => x.Id == id);
         }
 
         public void Remove(TodoItem item)
         {
             _items.Remove(item);
+        }
+
+        public void RemoveCompleted()
+        {
+            _items.RemoveAll(t => t.IsCompleted);
         }
     }
 }
