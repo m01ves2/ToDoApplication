@@ -6,33 +6,69 @@
         xmlns:local="clr-namespace:ToDoApplication.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="20">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <!-- Ресурсы окна -->
+    <Window.Resources>
+        <local:NullToBoolConverter x:Key="NullToBoolConverter" />
+    </Window.Resources>
 
-        <TextBox Grid.Row="0" Margin="0,0,0,10" Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}" />
-        <Button Grid.Row="1" Content="Add" Command="{Binding AddTodoCommand}" Margin="0,0,0,10" Width="200"/>
-        <ListBox Grid.Row="2" ItemsSource="{Binding Todos}">
+    <StackPanel Margin="10">
+        <!-- Ввод нового элемента -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox Width="500" Text="{Binding NewTodoText, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Width="100" Content="Add" Command="{Binding AddTodoCommand}" Margin="5,0,0,0"/>
+        </StackPanel>
 
+        <!-- Список Todos -->
+        <ListBox x:Name="TodosList"
+                 ItemsSource="{Binding Todos}"
+                 SelectedItem="{Binding SelectedTodo, Mode=TwoWay}"
+                 Height="250"
+                 SelectionMode="Single">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding IsCompleted, Mode=TwoWay}" 
-                          Command="{Binding DataContext.ToggleCompletedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                          CommandParameter="{Binding}" />
-                        <TextBlock Text="{Binding Title}" Margin="5,0"/>
-                        <Button Content="Delete" 
-                        Command="{Binding DataContext.DeleteTodoCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                        CommandParameter="{Binding}" />
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Checkbox -->
+                        <CheckBox Grid.Column="0"
+                                  IsChecked="{Binding IsCompleted, Mode=TwoWay}"
+                                  VerticalAlignment="Center"
+                                  Command="{Binding DataContext.ToggleCompletedCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                  CommandParameter="{Binding}" />
+
+                        <!-- Название задачи -->
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Title}"
+                                   VerticalAlignment="Center"
+                                   Margin="5,0,0,0"/>
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
 
-    </Grid>
+        <!-- Кнопки управления выделенным элементом -->
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Button Content="↑" 
+                    Width="50"
+                    Command="{Binding MoveUpCommand}" 
+                    CommandParameter="{Binding SelectedTodo}" 
+                    IsEnabled="{Binding SelectedTodo, Converter={StaticResource NullToBoolConverter}}" />
+
+            <Button Content="↓" 
+                    Width="50"
+                    Margin="5,0,0,0"
+                    Command="{Binding MoveDownCommand}" 
+                    CommandParameter="{Binding SelectedTodo}" 
+                    IsEnabled="{Binding SelectedTodo, Converter={StaticResource NullToBoolConverter}}" />
+
+            <Button Content="Delete Completed" 
+                    Width="120"
+                    Margin="5,0,0,0"
+                    Command="{Binding DeleteCompletedCommand}" />
+        </StackPanel>
+    </StackPanel>
 </Window>
