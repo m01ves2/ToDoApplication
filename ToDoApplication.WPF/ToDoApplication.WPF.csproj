@@ -1,13 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ToDoApplication.CompositionRoot\ToDoApplication.CompositionRoot.csproj" />
     <ProjectReference Include="..\ToDoApplication.Presentation\ToDoApplication.Presentation.csproj" />
   </ItemGroup>
 
