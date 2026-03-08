@@ -23,7 +23,7 @@ namespace ToDoApplication.Tests.Domain
         public void ToggleCompleted_SetsIsCompletedToTrue()
         {
             var task = new TodoItem("Learn TDD");
-            task.ToggleCompleted();
+            task.ToggleComplete();
             Assert.True(task.IsCompleted);
         }
     }

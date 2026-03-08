@@ -7,12 +7,12 @@
         public bool IsCompleted { get; private set; }
         
         public int Order { get; private set; }
-        public TodoItem(string title) {
+        public TodoItem(string title, bool isCompleted = false) {
             if (string.IsNullOrWhiteSpace(title))
                 throw new ArgumentException("Title cannot be null or empty", nameof(title));
 
             Title = title;
-            IsCompleted = false;
+            IsCompleted = isCompleted;
         }
 
         public void ToggleComplete()

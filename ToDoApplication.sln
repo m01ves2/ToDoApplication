@@ -11,11 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Infrastructure", "ToDoApplication.Infrastructure\ToDoApplication.Infrastructure.csproj", "{B92A20ED-1AC1-4E0F-8000-D364910962AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Presentation", "ToDoApplication.Presentation\ToDoApplication.Presentation.csproj", "{21802D89-3268-4A71-AD35-BE018797190A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.WPF", "ToDoApplication.WPF\ToDoApplication.WPF.csproj", "{8EBD3529-8140-4014-A8BA-7F4C8D06AE94}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.CompositionRoot", "ToDoApplication.CompositionRoot\ToDoApplication.CompositionRoot.csproj", "{40BBDB28-BCA9-4DCB-80EA-F9B83C950F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.CLI", "ToDoApplication.CLI\ToDoApplication.CLI.csproj", "{001C4434-63CB-40C7-9F41-FBCEFA43610B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoApplication.Presentation", "ToDoApplication.Presentation\ToDoApplication.Presentation.csproj", "{0491E267-0889-44EA-86C1-00BD16A20A85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,18 +39,18 @@ Global
 		{B92A20ED-1AC1-4E0F-8000-D364910962AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B92A20ED-1AC1-4E0F-8000-D364910962AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B92A20ED-1AC1-4E0F-8000-D364910962AA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21802D89-3268-4A71-AD35-BE018797190A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21802D89-3268-4A71-AD35-BE018797190A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21802D89-3268-4A71-AD35-BE018797190A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21802D89-3268-4A71-AD35-BE018797190A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8EBD3529-8140-4014-A8BA-7F4C8D06AE94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8EBD3529-8140-4014-A8BA-7F4C8D06AE94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8EBD3529-8140-4014-A8BA-7F4C8D06AE94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8EBD3529-8140-4014-A8BA-7F4C8D06AE94}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40BBDB28-BCA9-4DCB-80EA-F9B83C950F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40BBDB28-BCA9-4DCB-80EA-F9B83C950F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40BBDB28-BCA9-4DCB-80EA-F9B83C950F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40BBDB28-BCA9-4DCB-80EA-F9B83C950F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{001C4434-63CB-40C7-9F41-FBCEFA43610B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{001C4434-63CB-40C7-9F41-FBCEFA43610B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{001C4434-63CB-40C7-9F41-FBCEFA43610B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{001C4434-63CB-40C7-9F41-FBCEFA43610B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0491E267-0889-44EA-86C1-00BD16A20A85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0491E267-0889-44EA-86C1-00BD16A20A85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0491E267-0889-44EA-86C1-00BD16A20A85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0491E267-0889-44EA-86C1-00BD16A20A85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
