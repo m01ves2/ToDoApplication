@@ -1,0 +1,11 @@
+﻿namespace ToDoApplication.CompositionRoot
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var app = new AppBuilder();
+            app.Run();
+        }
+    }
+}
