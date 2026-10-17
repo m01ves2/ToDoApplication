@@ -16,7 +16,7 @@ namespace ToDoApplication.Tests.Domain
         [Fact]
         public void Create_WithNullTitle_ThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => new TodoItem(null));
+            Assert.Throws<ArgumentException>(() => new TodoItem(null!));
         }
 
         [Fact]

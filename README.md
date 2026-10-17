@@ -1,49 +1,66 @@
-# ToDoApplication
+# To-Do Application — Console MVVM-like
 
-Simple To-Do app in **C# / WPF**( **MVVM** pattern) and **WinForms** (**MVP** pattern).
+A simple To-Do application built with **C# 12 / .NET 8**, using a console interface and an event-driven presentation architecture inspired by the MVVM pattern.
 
 ## Features
-- Add, toggle, delete, and reorder tasks
-- Delete completed tasks
-- ObservableCollection for dynamic UI updates
-- Unit-tested UseCases and Domain logic
+
+- Create and display tasks.
+- Toggle task completion.
+- Delete individual or all completed tasks.
+- Move tasks up and down in the list.
+
+Tasks are stored in memory and are not persisted between runs.
 
 ## Technologies
-- C# 12, .NET 8
-- WPF, Console and Winforms for UI
-- MVP design pattern 
-- MVVM design pattern
-- xUnit for testing
+
+- C# 12 / .NET 8
+- Console UI
+- Events and delegates
+- Layered architecture
+- xUnit for unit testing
 
 ## Architecture
-- **Presentation:** MainViewModel, TodoItemViewModel, RelayCommand  
-- **Application:** UseCases (Create, Get, Toggle, Delete, Swap, DeleteCompleted)  
-- **Domain:** TodoItem, TodoNotFoundException  
-- **Infrastructure:** InMemoryTodoRepository
 
-## Getting Started
-1. Clone repository
-2. Open in Visual Studio / Rider
-3. Build & run `ToDoApplication.WPF`/`ToDoApplication.CLI`/`ToDoApplication.Winforms`
+| Project | Responsibility |
+|---|---|
+| `ToDoApplication.Domain` | `TodoItem` entity and domain rules |
+| `ToDoApplication.Application` | Use Cases and `ITodoRepository` |
+| `ToDoApplication.Infrastructure` | `InMemoryTodoRepository` |
+| `ToDoApplication.Presentation` | `ConsoleViewModel` and `TodoItemDTO` |
+| `ToDoApplication.CLI` | `ConsoleView` — user input and rendering |
+| `ToDoApplication.CompositionRoot` | Object creation and event subscriptions |
+| `ToDoApplication.Tests` | Unit tests |
+
+## Presentation Architecture
+
+`ConsoleView` handles user input and raises events such as `AddTodoRequested` and `DeleteTodoRequested`.
+
+`ConsoleViewModel` handles these requests through Application Use Cases, retrieves the current tasks, and raises `TodosChanged` when the displayed data needs updating.
+
+`AppBuilder` connects View and ViewModel through delegates:
+
+```csharp
+view.AddTodoRequested += viewModel.AddTodo;
+viewModel.TodosChanged += view.Render;
+```
+
+The View and ViewModel do not hold direct references to each other.
+
+Unlike a full MVVM framework, this implementation uses manually configured events rather than an automatic data binding mechanism.
+
+## Build and Run
+
+Requires .NET 8 SDK.
+
+```bash
+dotnet build
+dotnet test
+dotnet run --project ToDoApplication.CompositionRoot
+```
 
 ## Notes
-- MainViewModel orchestrates UI and UseCases  
-- Commands handle all interactions  
-- Currently uses in-memory repository; database persistence can be added later
 
-
-# To-Do Application (WPF MVVM + Console MVVM + Winforms MVP)
-
-This project demonstrates a simple To-Do application built using **MVVM architecture** and **MVP architecture**. The WPF version uses full data binding,
- while the Console version mimics MVVM with events and DTOs to separate View and ViewModel. The exercise shows how MVVM concepts can be applied even without a UI framework, emphasizing state-driven updates and decoupled design.
-
-## MVVM vs MVP - Key Takeaways
-
-- **MVVM decouples the View from the logic:** ViewModel holds state and notifies subscribers; View only reacts to events. No direct calls between View and ViewModel.  
-- **MVP binds View and Presenter more tightly:** Presenter actively manipulates the View, often calling methods or updating controls directly.  
-- **MVVM enables cleaner separation and easier testing:** State changes propagate via events; UI updates automatically.  
-- **In a console or non-WPF UI, MVVM concepts still apply:** Use events and DTOs to mimic binding without framework-specific features.  
-
-**Conclusion:** While both patterns work, MVVM provides a more flexible and testable architecture by separating state management from UI rendering.
-MVP is simpler for small apps. MVVM keeps UI and logic separated, updates views automatically via events/bindings, and scales better for complex applications. 
-This project shows MVVM principles using a console UI and WPF, and MVP principles using WinForms.
+- `ConsoleViewModel` coordinates UI operations and Application Use Cases.
+- `TodoItemDTO` represents the task data passed to the console interface.
+- The View redraws the task list after receiving `TodosChanged`.
+- The interface is intentionally minimal, focusing on presentation architecture rather than advanced console UI features.

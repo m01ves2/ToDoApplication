@@ -93,16 +93,15 @@ namespace ToDoApplication.Presentation
             LoadTodoItems();
         }
 
-        public void MoveDown(int order)
+        public void MoveDown(int id)
         {
-            var todo = _todos.Where(t => t.Order == order).FirstOrDefault();
+            var todo = _todos.FirstOrDefault(t => t.Id == id);
             if (todo == null) return;
 
             int todoIndex = _todos.IndexOf(todo);
             if (todoIndex >= _todos.Count - 1) return;
 
             var otherTodo = _todos[todoIndex + 1];
-
             _swapItemsOrderUC.Execute(todo.Id, otherTodo.Id);
             LoadTodoItems();
         }

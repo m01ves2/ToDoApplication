@@ -127,7 +127,7 @@ namespace ToDoApplication.CLI
                         return;
                     }
 
-                    if (numberDown == _todos.Count - 1) return;
+                    if (numberDown == _todos.Count) return;
                     var idDown = _todos[numberDown - 1].Id;
                     MoveDownRequested?.Invoke(idDown);
                     break;
