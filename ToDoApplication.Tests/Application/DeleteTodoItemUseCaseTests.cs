@@ -14,7 +14,7 @@ namespace ToDoApplication.Tests.Application
             repo.Add(item);
             var useCase = new DeleteTodoItemUseCase(repo);
 
-            useCase.Execute(item);
+            useCase.Execute(item.Id);
 
             Assert.Empty(repo.GetAll());
         }

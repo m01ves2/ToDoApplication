@@ -17,7 +17,7 @@ namespace ToDoApplication.Presentation
         private readonly SwapItemsOrderUseCase _swapItemsOrderUC;
 
         public ObservableCollection<TodoItemViewModel> Todos { get; } = new ObservableCollection<TodoItemViewModel>();
-        private string newTodoText;
+        private string newTodoText = string.Empty;
         public string NewTodoText
         {
             get => newTodoText;

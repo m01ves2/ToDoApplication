@@ -29,7 +29,7 @@ namespace ToDoApplication.Tests.Application
             var useCase = new CreateTodoItemUseCase(repo);
 
             // Act & Assert
-            Assert.Throws<ArgumentException>(() => useCase.Execute(null));
+            Assert.Throws<ArgumentException>(() => useCase.Execute(null!));
             Assert.Throws<ArgumentException>(() => useCase.Execute(""));
             Assert.Throws<ArgumentException>(() => useCase.Execute("   "));
         }
