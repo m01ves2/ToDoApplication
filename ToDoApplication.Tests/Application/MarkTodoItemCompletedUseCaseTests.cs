@@ -14,7 +14,7 @@ namespace ToDoApplication.Tests.Application
             repo.Add(item);
             var useCase = new ToggleCompletedUseCase(repo);
 
-            useCase.Execute(item);
+            useCase.Execute(item.Id);
 
             Assert.True(item.IsCompleted);
             Assert.Contains(item, repo.GetAll());

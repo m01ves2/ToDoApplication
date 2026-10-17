@@ -51,32 +51,27 @@ namespace ToDoApplication.Presentation
             if (string.IsNullOrWhiteSpace(title))
                 return;
 
-            ExecuteSafe(() => _createUseCase.Execute(title));
-            RefreshList();
+            ExecuteAndRefresh(() => _createUseCase.Execute(title));
         }
 
         private void OnDeleteButtonClicked(int id)
         {
-            ExecuteSafe(() => _deleteUseCase.Execute(id));
-            RefreshList();
+            ExecuteAndRefresh(() => _deleteUseCase.Execute(id));
         }
 
         private void OnDeleteCompletedClicked()
         {
-            ExecuteSafe(() => _deleteCompletedUseCase.Execute());
-            RefreshList();
+            ExecuteAndRefresh(() => _deleteCompletedUseCase.Execute());
         }
 
         private void OnItemToggledCompleted(int id)
         {
-            ExecuteSafe(() => _toggleCompletedUseCase.Execute(id));
-            RefreshList();
+            ExecuteAndRefresh(() => _toggleCompletedUseCase.Execute(id));
         }
 
         private void OnSwapButtonClicked(int id1, int id2)
         {
-            ExecuteSafe(() => _swapOrderUseCase.Execute(id1, id2));
-            RefreshList();
+            ExecuteAndRefresh(() => _swapOrderUseCase.Execute(id1, id2));
         }
 
         private void RefreshList()
@@ -91,10 +86,11 @@ namespace ToDoApplication.Presentation
             return items.Select(i => new TodoItemDto(i.Id, i.Title, i.IsCompleted, i.Order));
         }
 
-        private void ExecuteSafe(Action action)
+        private void ExecuteAndRefresh(Action action)
         {
             try {
                 action();
+                RefreshList();
             }
             catch (Exception ex) {
                 _view.ShowError(ex.Message);

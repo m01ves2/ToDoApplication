@@ -16,14 +16,14 @@ namespace ToDoApplication.Tests.Domain
         [Fact]
         public void Create_WithNullTitle_ThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => new TodoItem(null));
+            Assert.Throws<ArgumentException>(() => new TodoItem(null!));
         }
 
         [Fact]
         public void ToggleCompleted_SetsIsCompletedToTrue()
         {
             var task = new TodoItem("Learn TDD");
-            task.ToggleCompleted();
+            task.ToggleComplete();
             Assert.True(task.IsCompleted);
         }
     }
